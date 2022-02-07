@@ -87,6 +87,7 @@ contract NFTMarket is ReentrancyGuard{
         }
 
     
+   
     function createMarketSale(
         address nftContract,
         uint256 itemId
@@ -152,5 +153,26 @@ contract NFTMarket is ReentrancyGuard{
         return items;
     }
 
-    
+    function fetchItemsCreated() public view returns(MarketItem[] memory) {
+        uint totalItemCount = _itemIds.current();
+        uint itemCount = 0; // this will represent the items that the persion created
+        uint currentIndex = 0;
+
+        for (uint i = 0; i < totalItemCount; i++){
+            if (idToMarketItem[i+1].seller == msg.sender ){
+                itemCount++;
+            }
+        }
+
+        MarketItem[] memory items = new MarketItem[] (itemCount);
+        for (uint i = 0 ; i < totalItemCount; i++) {
+            if (idToMarketItem[i+1].seller == msg.sender) {
+                uint currentId = idToMarketItem[i+1].itemId;
+                MarketItem storage currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem; // Insert the item into the array
+                currentIndex+=1;
+            }
+        }
+        return items;
+    }
 }
