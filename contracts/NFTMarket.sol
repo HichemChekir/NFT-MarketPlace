@@ -98,13 +98,59 @@ contract NFTMarket is ReentrancyGuard{
 
         require(msg.value == price, "Please submit the asking price in order to complete the purchase");
 
-        //transfer the Item to the buyer
+        //transfer the value of the transaction to the seller
         idToMarketItem[itemId].seller.transfer(msg.value);
+        //transfer ownership of the token
         IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
+        //set the local value of the owner to the msg.sender
         idToMarketItem[itemId].owner = payable(msg.sender);
+
         _itemSold.increment();
 
+        //pay the owner of the contract
         payable(owner).transfer(listingPrice);
     }
+
+    function fetchMarketItem() public view returns(MarketItem[] memory){
+        uint itemCount = _itemIds.current();
+        uint unsoldItemCount = _itemIds.current() - _itemSold.current();
+        uint currentIndex = 0;
+
+        //create an array with the unsold market items
+        MarketItem[] memory items = new MarketItem[](unsoldItemCount);
+
+        for (uint i = 0; i < itemCount; i++){
+            if (idToMarketItem[i+1].owner == address(0)){
+                uint currentId = idToMarketItem[i+1].itemId;
+                MarketItem storage currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem;
+            }
+        }
+        return items;
+    }
+
+    function fetchMyNFTs() public view returns (MarketItem[] memory) {
+        uint totalItemCount = _itemIds.current();
+        uint itemCount = 0;
+        uint currentIndex = 0;
+
+        for (uint i = 0; i < totalItemCount; i++){
+            if (idToMarketItem[i+1].owner == msg.sender ){
+                itemCount++;
+            }
+        }
+
+        MarketItem[] memory items = new MarketItem[] (itemCount);
+        for (uint i = 0 ; i < totalItemCount; i++) {
+            if (idToMarketItem[i+1].owner == msg.sender) {
+                uint currentId = idToMarketItem[i+1].itemId;
+                MarketItem storage currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem;
+                currentIndex+=1;
+            }
+        }
+        return items;
+    }
+
     
 }
