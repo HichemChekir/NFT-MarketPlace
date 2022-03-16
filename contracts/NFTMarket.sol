@@ -112,7 +112,7 @@ contract NFTMarket is ReentrancyGuard{
         payable(owner).transfer(listingPrice);
     }
 
-    function fetchMarketItem() public view returns(MarketItem[] memory){
+    function fetchMarketItems() public view returns(MarketItem[] memory){
         uint itemCount = _itemIds.current();
         uint unsoldItemCount = _itemIds.current() - _itemSold.current();
         uint currentIndex = 0;

@@ -20,10 +20,10 @@ module.exports = {/*
 */
   
     solidity: {
-      version: "0.8.4",
+      version: "0.8.3",
       settings: {
-        optomizer: {
-          enable: true,
+        optimizer: {
+          enabled: true,
           runs: 200,
         }
       }
