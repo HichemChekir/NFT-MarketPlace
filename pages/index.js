@@ -20,6 +20,9 @@ import Market from "../artifacts/contracts/Market.sol/NFTMarket.json"
 
 
 export default function Home() {
+  const [nfts, setNfts] = useState([]) 
+  const [loadingState, setLoadingState] = useState('not-loaded')
+
   return (
     <div className={styles.container}>
       <h1>Home</h1>
