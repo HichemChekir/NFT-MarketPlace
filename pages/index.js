@@ -7,6 +7,8 @@ import axios from 'axios'
 // web3modal allows you to connect to crypto walllets$
 import Web3Modal from 'web3modal'
 
+
+
 //we need a reference to our nft address and market address
 import {
   nftaddress, nftmarketaddress

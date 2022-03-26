@@ -20,6 +20,7 @@
     "ipfs-http-client": "^50.1.2",
     "knex": "^1.0.4",
     "next": "^12.1.0",
+    "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "postcss-cli": "^9.1.0",
     "react": "17.0.2",
