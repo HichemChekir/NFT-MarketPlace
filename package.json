@@ -1,4 +1,6 @@
 {
+  "start": "node --experimental-json-modules example.js",
+  "type": "module",
   "name": "nft_marketplace",
   "private": true,
   "scripts": {
@@ -12,6 +14,7 @@
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "^4.5.0",
     "axios": "^0.25.0",
+    "babel-preset-react": "^6.24.1",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.6.0",
