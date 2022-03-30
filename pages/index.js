@@ -18,8 +18,8 @@ import {
 // ABIs are essentially a json representation of our smart contrat
 //it allows us to interact with it from a client side app
 
-import NFT from '../artifacts/contracts/NFT.sol/NFT.json' assert {type:"json"}
-import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json" assert {type:"json"}
+import NFT from '../artifacts/contracts/NFT.sol/NFT.json' 
+import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json"
 
 
 
@@ -78,9 +78,7 @@ export default function Home() {
     await transaction.wait()
     loadNFTs()
   }
-  
 
-/*
   if (loadingState === 'loaded' && !nfts.length){
      return (
      <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
@@ -111,7 +109,7 @@ export default function Home() {
       </div>
     </div>
   )}
-*/
+
 }
 
 

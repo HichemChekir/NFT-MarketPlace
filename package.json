@@ -1,6 +1,4 @@
 {
-  "start": "node --experimental-json-modules example.js",
-  "type": "module",
   "name": "nft_marketplace",
   "private": true,
   "scripts": {
